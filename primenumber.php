@@ -3,35 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Large Number</title>
+    <title>Prime Number</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
-    <?php  
-    error_reporting(0);
+
+<?php  
     $error = '';
     $success = '';
     $errorinfo = '';
+    $isPrime = '';
+    $prime = [];
+    $notprime = [];
+
+    function prime($n) {
+        if ($n < 2) return false;
+      if ($n === 2) return true;
+      if ($n % 2 === 0) return false;
+        for ($i = 3; $i < $n; $i+=2) {
+            if ($n%$i == 0) {
+                return false;
+            }
+          }
+            return true;
+    }
+
+
     if (isset($_POST['submit'])) {
         $input = $_POST['input'];
         $inputArray = explode(',',$input);
-        $large = '';
+        $isPrime = '';
         foreach($inputArray as $num) {
             if (is_numeric($num)) {
-                $large = trim($num);
-                $large > $num ? $large : $large = $num;              
+                $isPrime = trim($num);
+                if (prime($isPrime)) {
+                    $prime[] = $isPrime;                  
+                } else {
+                    $notprime[] = $isPrime;
+                }
+                             
             } else {
                 $NN[] = $num;
-                $errorinfo = 'Only Numbers are allowed. Not numbers(ignored): '. implode(',',$NN);
+                $error = 'Only Numbers are allowed. Not numbers(ignored): '. implode(',',$NN);
             }
         }
-        if(!empty($large)) {
-        $success = 'Largest Number is '.$large;
+        if(!empty($prime)) {
+        $success = 'Prime Number(s): '.implode(',',$prime);
         }
+
+        if(!empty($notprime)) {
+            $errorinfo = 'Non-prime Number(s): '.implode(',',$notprime);
+            }
     }
     ?>
     <div class="container text-center">
-    <h1>Large Number</h1>
+    <h1>Prime Number</h1>
     <form action="" method="post" class="maxmin mb-2">
     <input type="text" name="input" placeholder="ex: 12,41,4,90,51..."> <br>
     <input class="mt-2" type="submit" value="Submit" name="submit">
