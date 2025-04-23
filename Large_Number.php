@@ -32,9 +32,9 @@
     ?>
     <div class="container text-center">
     <h1>Large Number</h1>
-    <form action="" method="post" class="maxmin mb-2">
-    <input type="text" name="input" placeholder="ex: 12,41,4,90,51..."> <br>
-    <input class="mt-2" type="submit" value="Submit" name="submit">
+    <form action="" method="post" class="maxmin my-4">
+    <input type="text" class="form-control" name="input" placeholder="ex: 12,41,4,90,51..." value="<?= htmlspecialchars($_POST['input'] ?? '') ?>">
+    <input class="btn btn-primary mt-2" type="submit" value="Submit" name="submit">
     </form>
     <div class="status">
         <?php

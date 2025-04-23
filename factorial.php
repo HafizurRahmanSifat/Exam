@@ -38,9 +38,9 @@
     ?>
     <div class="container text-center">
         <h1>Factorial </h1>
-        <form action="" method="post" class="maxmin mb-2">
-            <input type="number" name="input" placeholder="ex: 12"> <br>
-            <input class="mt-2" type="submit" value="Submit" name="submit">
+        <form action="" method="post" class="maxmin my-4">
+            <input type="number" class="form-control" name="input" placeholder="ex: 12" value="<?= htmlspecialchars($_POST['input'] ?? '') ?>">
+            <input class="btn btn-primary mt-2" type="submit" value="Submit" name="submit">
         </form>
         <div class="status">
             <?php
