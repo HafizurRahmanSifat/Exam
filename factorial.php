@@ -30,7 +30,8 @@
         $input = (int) $_POST['input'];
             if ($result = factorial($input)) {
                 $success = "Factorial of ".$input." is ".$result ."<br>";
-            }
+            } else
+                $error = "Only positive integers are allowed.";
     }
 
 
